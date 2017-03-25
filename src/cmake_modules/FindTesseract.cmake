@@ -13,7 +13,9 @@ include(LibFindMacros)
 # Include dir
 find_path(Tesseract_INCLUDE_BASEAPI_DIR
   NAMES tesseract/baseapi.h
-  HINTS "/usr/include"
+  HINTS "${Tesseract_DIR}/include"
+        "${Tesseract_DIR}/include/tesseract"
+        "/usr/include"
         "/usr/include/tesseract"
         "/usr/local/include"
         "/usr/local/include/tesseract"
@@ -24,7 +26,9 @@ find_path(Tesseract_INCLUDE_BASEAPI_DIR
 )
 find_path(Tesseract_INCLUDE_CCSTRUCT_DIR
   NAMES publictypes.h
-  HINTS "/usr/include"
+  HINTS "${Tesseract_DIR}/include"
+        "${Tesseract_DIR}/include/tesseract"
+        "/usr/include"
         "/usr/include/tesseract"
         "/usr/local/include"
         "/usr/local/include/tesseract"
@@ -35,7 +39,9 @@ find_path(Tesseract_INCLUDE_CCSTRUCT_DIR
 )
 find_path(Tesseract_INCLUDE_CCMAIN_DIR
   NAMES thresholder.h
-  HINTS "/usr/include"
+  HINTS "${Tesseract_DIR}/include"
+        "${Tesseract_DIR}/include/tesseract"
+        "/usr/include"
         "/usr/include/tesseract"
         "/usr/local/include"
         "/usr/local/include/tesseract"
@@ -46,7 +52,9 @@ find_path(Tesseract_INCLUDE_CCMAIN_DIR
 )
 find_path(Tesseract_INCLUDE_CCUTIL_DIR
   NAMES platform.h
-  HINTS "/usr/include"
+  HINTS "${Tesseract_DIR}/include"
+        "${Tesseract_DIR}/include/tesseract"
+        "/usr/include"
         "/usr/include/tesseract"
         "/usr/local/include"
         "/usr/local/include/tesseract"
@@ -60,7 +68,8 @@ find_path(Tesseract_INCLUDE_CCUTIL_DIR
 # Finally the library itself
 find_library(Tesseract_LIB
   NAMES tesseract tesseract-static libtesseract303-static
-  HINTS "/usr/lib"
+  HINTS ${Tesseract_DIR}/lib
+        "/usr/lib"
         "/usr/local/lib"
         "/opt/local/lib"
         ${Tesseract_PKGCONF_LIBRARY_DIRS}
@@ -70,7 +79,8 @@ find_library(Tesseract_LIB
 
 find_library(Leptonica_LIB
   NAMES liblept170 liblept lept
-  HINTS "/usr/lib"
+  HINTS ${Tesseract_DIR}/lib
+        "/usr/lib"
         "/usr/local/lib"
         "/opt/local/lib"
         ${Tesseract_PKGCONF_LIBRARY_DIRS}
@@ -80,8 +90,8 @@ find_library(Leptonica_LIB
 
 # Set the include dir variables and the libraries and let libfind_process do the rest.
 # NOTE: Singular variables for this library, plural for libraries this this lib depends on.
-set(Tesseract_PROCESS_INCLUDES 
-    Tesseract_INCLUDE_BASEAPI_DIR 
+set(Tesseract_PROCESS_INCLUDES
+    Tesseract_INCLUDE_BASEAPI_DIR
 	Tesseract_INCLUDE_CCSTRUCT_DIR
 	Tesseract_INCLUDE_CCMAIN_DIR
 	Tesseract_INCLUDE_CCUTIL_DIR
