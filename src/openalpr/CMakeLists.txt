@@ -44,7 +44,23 @@ set(lpr_source_files
  result_aggregator.cpp
 )
 
- 
+set(lpr_header_files
+ alpr.h
+ binarize_wolf.h
+ config.h
+ constants.h
+ prewarp.h
+ utility.h
+)
+
+set(lpr_detection_header_files
+ detection/detector_types.h
+)
+
+set(lpr_support_header_files
+ support/filesystem.h
+ support/timing.h
+)
 
 add_subdirectory(simpleini)
 add_subdirectory(support)
@@ -63,7 +79,10 @@ TARGET_LINK_LIBRARIES(openalpr
 )
 
 
-install (FILES   alpr.h     DESTINATION    ${CMAKE_INSTALL_PREFIX}/include)
+
+install (FILES   ${lpr_header_files} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/openalpr)
+install (FILES   ${lpr_detection_header_files} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/openalpr/detection)
+install (FILES   ${lpr_support_header_files} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/openalpr/support)
 install (TARGETS openalpr-static DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 install (TARGETS openalpr   DESTINATION    ${CMAKE_INSTALL_PREFIX}/lib)
 
